@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oblikovanje Spletnih Strani | Profesionalni Spletni Oblikovalec</title>
+    <style>
+        /* Globalni slogi */
+        :root {
+            --primary: #000000;
+            --secondary: #FFFFFF;
+            --accent: #FFD700;
+            --text: #F5F5F5;
+            --text-secondary: #CCCCCC;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            opacity: 0.8;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 15px auto 0;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        
+        /* Navigacija */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero sekcija */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        /* O meni sekcija */
+        #about {
+            background-color: rgba(20, 20, 20, 0.9);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .skill {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--accent);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        /* Portfolio sekcija */
+        #portfolio {
+            background-color: var(--primary);
+        }
+        
+        .slider {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .slides {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .slides::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .slide {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 30px;
+            color: white;
+        }
+        
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--text-secondary);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background-color: var(--accent);
+        }
+        
+        /* Storitve sekcija */
+        #services {
+            background-color: rgba(20, 20, 20, 0.9);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Kontakt sekcija - UPDATED */
+        #contact {
+            background-color: var(--primary);
+            text-align: center;
+        }
+        
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Animacije */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive stil */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text, .about-image {
+                flex: none;
+                width: 100%;
+            }
+            
+            .slide {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 80px);
+                background-color: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+                padding: 20px 0;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .slide {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .slide {
+                height: 300px;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigacija -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">VS Sites<span style="color: var(--text)">.</span></a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Domov</a></li>
+                    <li><a href="#about">O Meni</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#services">Storitve</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero sekcija -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Profesionalno Oblikovanje Spletnih Strani</h1>
+                <p>Ustvarjam sodobne, odzivne in vizualno privlačne spletne strani, ki prinašajo rezultate. Vaša digitalna prisotnost je moja prioriteta.</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn">Oglejte Si Moje Delo</a>
+                    <a href="#contact" class="btn btn-outline">Kontaktirajte Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O meni sekcija -->
+    <section id="about">
+        <div class="container">
+            <h2>O Meni</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Pozdravljeni, sem Vid Seljak, profesionalni oblikovalec spletnih strani s 10-letnimi izkušnjami v ustvarjanju edinstvenih digitalnih izkušenj.</p>
+                    <p>Specializiran sem za ustvarjanje sodobnih, uporabniku prijaznih spletnih strani, ki ne le izgledajo odlično, temveč tudi prinašajo rezultate. Moj pristop združuje estetiko s funkcionalnostjo in uporabniško izkušnjo.</p>
+                    <p>Vsak projekt obravnavam individualno in se osredotočam na potrebe strank, da zagotovim edinstveno rešitev, ki presega pričakovanja.</p>
+                    <div class="skills">
+                        <span class="skill">HTML5</span>
+                        <span class="skill">CSS3</span>
+                        <span class="skill">JavaScript</span>
+                        <span class="skill">Responsive Design</span>
+                        <span class="skill">UI/UX</span>
+                        <span class="skill">WordPress</span>
+                        <span class="skill">SEO</span>
+                        <span class="skill">Figma</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://t4.ftcdn.net/jpg/05/14/79/43/360_F_514794372_cZJc4gNTASOFs8MIwJouER5ZxfcT2Hyj.jpg" alt="Spletni oblikovalec">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio sekcija -->
+    <section id="portfolio">
+        <div class="container">
+            <h2>Oglejte si nekaj primerov</h2>
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide">
+                        <img src="https://cdn.vox-cdn.com/uploads/chorus_image/image/62582192/IMG_2025.280.jpg" alt="Projekt 1">
+                        <div class="slide-content">
+                            <h3>Restavracija Gostilna</h3>
+                            <p>Sodobna spletna stran za lokalno restavracijo z menijem, rezervacijskim sistemom in galerijo.</p>
+                            <a href="restaurant.html" class="btn btn-outline">Oglejte Si Projekt</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://www.indifi.com/blog/wp-content/uploads/2020/03/Offers-to-Customers-For-Travel-Agencies-.jpg" alt="Projekt 2">
+                        <div class="slide-content">
+                            <h3>Turistična Agencija</h3>
+                            <p>Odzivna spletna stran za turistično agencijo s sistemom za rezervacijo potovanj in galerijo destinacij.</p>
+                            <a href="Turistična agencija.html" class="btn btn-outline">Oglejte Si Projekt</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Projekt 3">
+                        <div class="slide-content">
+                            <h3>IT Podjetje</h3>
+                            <p>Profesionalna spletna stran za IT podjetje s predstavitvijo storitev, referencami in kontaktno formo.</p>
+                            <a href="IT.html" class="btn btn-outline">Oglejte Si Projekt</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Projekt 4">
+                        <div class="slide-content">
+                            <h3>Startup Podjetje</h3>
+                            <p>Inovativna spletna stran za startup podjetje s predstavitvijo produkta in sistemom za prijavo uporabnikov.</p>
+                            <a href="Startup.html" class="btn btn-outline">Oglejte Si Projekt</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Storitve sekcija -->
+    <section id="services">
+        <div class="container">
+            <h2>Moje Storitve</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🖥️</div>
+                    <h3>Oblikovanje Spletnih Strani</h3>
+                    <p>Ustvarjam edinstvene, vizualno privlačne spletne strani, prilagojene vašim potrebam in ciljni publiki.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Odzivni Design</h3>
+                    <p>Zagotavljam, da vaša spletna stran odlično deluje na vseh napravah, od mobilnih telefonov do namiznih računalnikov.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Vzdrževanje Strani</h3>
+                    <p>Ponujam redno vzdrževanje in posodabljanje spletnih strani, da ostanejo varno, hitro in sodobno.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>SEO Optimizacija</h3>
+                    <p>Izboljšam vidnost vaše spletne strani v iskalnikih, kar prinaša več obiskovalcev in potencialnih strank.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h3>E-Trgovine</h3>
+                    <p>Ustvarjam profesionalne e-trgovine, ki omogočajo enostavno in varno spletno nakupovanje.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✏️</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Oblikujem uporabniku prijazne vmesnike, ki izboljšajo uporabniško izkušnjo in povečajo konverzije.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt sekcija - UPDATED -->
+    <section id="contact">
+        <div class="container">
+            <h2>Kontakt</h2>
+            <div class="contact-container">
+                <h3>Pogovorimo se o Vašem projektu!</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>seljakvid@gmail.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>+386 041 906 290</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div>Sedež v Sloveniji, dostopen po vsem svetu</div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">FB</a>
+                    <a href="#" class="social-link">IG</a>
+                    <a href="#" class="social-link">LI</a>
+                    <a href="#" class="social-link">TW</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="footer-logo">VS Sites<span style="color: var(--text-secondary)">.</span></a>
+                <ul class="footer-links">
+                    <li><a href="#hero">Domov</a></li>
+                    <li><a href="#about">O Meni</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#services">Storitve</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <p class="copyright">© 2023 VS Sites. Vse pravice pridržane.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobilna navigacija
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links li');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+        
+        // Scroll efekti za header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling za anchor povezave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Slider funkcionalnost
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelector('.slides');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function goToSlide(n) {
+            currentSlide = (n + slides.children.length) % slides.children.length;
+            slides.scrollTo({
+                left: slides.children[currentSlide].offsetLeft,
+                behavior: 'smooth'
+            });
+            updateDots();
+        }
+        
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function startSlider() {
+            slideInterval = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+        }
+        
+        function stopSlider() {
+            clearInterval(slideInterval);
+        }
+        
+        // Dodaj event listenerje za pike
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                stopSlider();
+                startSlider();
+            });
+        });
+        
+        // Dodaj event listenerje za swipe (za mobilne naprave)
+        let startX, moveX;
+        let isDragging = false;
+        
+        slides.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - slides.offsetLeft;
+            stopSlider();
+        });
+        
+        slides.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            moveX = e.pageX - slides.offsetLeft;
+        });
+        
+        slides.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            if (moveX < startX - 50) {
+                goToSlide(currentSlide + 1);
+            } else if (moveX > startX + 50) {
+                goToSlide(currentSlide - 1);
+            }
+            
+            startSlider();
+        });
+        
+        slides.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+        
+        // Touch events za mobilne naprave
+        slides.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - slides.offsetLeft;
+            stopSlider();
+        });
+        
+        slides.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            moveX = e.touches[0].pageX - slides.offsetLeft;
+        });
+        
+        slides.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            if (moveX < startX - 50) {
+                goToSlide(currentSlide + 1);
+            } else if (moveX > startX + 50) {
+                goToSlide(currentSlide - 1);
+            }
+            
+            startSlider();
+        });
+        
+        // Inicializacija sliderja
+        startSlider();
+        
+        // Lazy loading za slike
+        const lazyLoadImages = () => {
+            const images = document.querySelectorAll('img[data-src]');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('data-src');
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => {
+                imageObserver.observe(img);
+            });
+        };
+        
+        // Pokličemo, ko se stran naloži
+        window.addEventListener('load', lazyLoadImages);
+        window.addEventListener('DOMContentLoaded', () => {
+            // Inicializacija
+            updateDots();
+        });
+    </script>
+</body>
+</html>

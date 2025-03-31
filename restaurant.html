@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gostilna Pri Martinu | Tradicionalna Slovenska Kuhinja</title>
+    <style>
+        /* Globalni slogi */
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #e8c547;
+            --accent: #c89446;
+            --text: #f5f5f5;
+            --text-secondary: #cccccc;
+            --section-bg: #252525;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', 'Arial', serif;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            border: 2px solid var(--secondary);
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(232, 197, 71, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--secondary);
+        }
+        
+        h2:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 15px auto 0;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Navigacija */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(200, 148, 70, 0.2);
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero sekcija */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        /* O nas sekcija */
+        #about {
+            background-color: var(--section-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .decoration {
+            position: absolute;
+            font-size: 20rem;
+            color: rgba(200, 148, 70, 0.05);
+            z-index: 0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .decoration-1 {
+            top: -50px;
+            left: -50px;
+        }
+        
+        .decoration-2 {
+            bottom: -50px;
+            right: -50px;
+        }
+        
+        /* Meni sekcija */
+        #menu {
+            background-color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .menu-tab {
+            padding: 10px 25px;
+            background-color: transparent;
+            color: var(--text);
+            border: 1px solid var(--accent);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .menu-tab.active {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+        
+        .menu-tab:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+        
+        .menu-category {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .menu-category.active {
+            display: block;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: var(--section-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(200, 148, 70, 0.1);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-item-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--accent);
+            padding-bottom: 10px;
+        }
+        
+        .menu-item-price {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        /* Galerija sekcija */
+        #gallery {
+            background-color: var(--section-bg);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay-content {
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay-content {
+            transform: translateY(0);
+        }
+        
+        /* Kontakt sekcija */
+        #contact {
+            background-color: var(--primary);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .opening-hours {
+            margin-top: 30px;
+        }
+        
+        .opening-hours li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(200, 148, 70, 0.3);
+        }
+        
+        .opening-hours span:first-child {
+            color: var(--text-secondary);
+        }
+        
+        .opening-hours span:last-child {
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(200, 148, 70, 0.3);
+            border-radius: 5px;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            background-color: rgba(232, 197, 71, 0.05);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(232, 197, 71, 0.1);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(200, 148, 70, 0.2);
+            padding-top: 20px;
+            width: 100%;
+        }
+        
+        /* Animacije */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border-radius: 5px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-nav-btn {
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        /* Responsive stil */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.3rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text, .about-image {
+                flex: none;
+                width: 100%;
+            }
+            
+            .decoration {
+                font-size: 15rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - 80px);
+                background-color: rgba(26, 26, 26, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.5s ease;
+                padding: 20px 0;
+                border-left: 1px solid var(--accent);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .decoration {
+                font-size: 10rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .menu-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .decoration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigacija -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Gostilna<span> Pri Martinu</span></a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Domov</a></li>
+                    <li><a href="#about">O Nas</a></li>
+                    <li><a href="#menu">Meni</a></li>
+                    <li><a href="#gallery">Galerija</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero sekcija -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Okusite Pravo Slovensko Kuhinjo</h1>
+                <p>V naši gostilni vas čakajo tradicionalni slovenski okusi, pripravljeni po starih družinskih receptih iz najboljših lokalnih sestavin.</p>
+                <div class="hero-btns">
+                    <a href="#menu" class="btn">Oglejte Si Meni</a>
+                    <a href="#contact" class="btn btn-outline">Rezervirajte Mizo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O nas sekcija -->
+    <section id="about">
+        <div class="container">
+            <h2>O Naši Gostilni</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Gostilna Pri Martinu je družinska restavracija s tradicijo, ki sega v leto 1985. Nahajamo se v srcu Ljubljane, v prijetnem okolju, kjer se tradicija sreča s sodobnostjo.</p>
+                    <p>Naš cilj je ohraniti avtentične slovenske okuse in jih predstaviti na sodoben način. Vse jedi pripravljamo iz svežih, lokalnih sestavin, ki jih dobavljamo od zaupanja vrednih kmetov in dobaviteljev.</p>
+                    <p>Posebno ponosni smo na naše domače specialitete, kot so kraški pršut, domači žganci, prekmurska gibanica in številne druge jedi, ki vas bodo popeljale na kulinarično potovanje po Sloveniji.</p>
+                    <a href="#gallery" class="btn" style="margin-top: 20px;">Oglejte Si Naš Prostor</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Gostilna Pri Martinu">
+                </div>
+            </div>
+            <div class="decoration decoration-1">Gostilna</div>
+            <div class="decoration decoration-2">Pri Martinu</div>
+        </div>
+    </section>
+
+    <!-- Meni sekcija -->
+    <section id="menu">
+        <div class="container">
+            <h2>Naš Meni</h2>
+            <div class="menu-tabs">
+                <div class="menu-tab active" data-category="predjed">Predjed</div>
+                <div class="menu-tab" data-category="glavna">Glavne Jed</div>
+                <div class="menu-tab" data-category="sladice">Sladice</div>
+                <div class="menu-tab" data-category="pijaca">Pijača</div>
+            </div>
+            
+            <div class="menu-category active" id="predjed">
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://www.kras.si/wp-content/uploads/2020/08/kraski-prsut-image-R-F.jpg" alt="Kraški pršut">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Kraški pršut</h3>
+                                <span class="menu-item-price">12,50 €</span>
+                            </div>
+                            <p>Kraški pršut s domačim kruhom in olivami, postrežen s pestom</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://www.alpija.si/wp-content/uploads/2021/05/ostali_izdelki_alpija.jpg" alt="Šunka">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Domača šunka</h3>
+                                <span class="menu-item-price">10,90 €</span>
+                            </div>
+                            <p>Suho zorjena domača šunka s hrenom in domačim kruhom</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://www.siroljub.si/wp-content/uploads/2019/08/plato_sira.jpg" alt="Sirni krožnik">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Sirni krožnik</h3>
+                                <span class="menu-item-price">9,90 €</span>
+                            </div>
+                            <p>Raznolika izbira lokalnih sirov s medom, oreščki in figovo marmelado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category" id="glavna">
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://the-slovenia.com/wp-content/uploads/2020/05/F004235-iztok_medja_kranjska_klobasa_orig_jpg-photo-s.jpg" alt="Kranjska klobasa">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Kranjska klobasa</h3>
+                                <span class="menu-item-price">14,90 €</span>
+                            </div>
+                            <p>Originalna kranjska klobasa s kislim zeljem, gorčico in domačim kruhom</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://cdn.shopify.com/s/files/1/0713/2167/files/zganci-41_480x480.jpg?v=1636129078" alt="Žganci">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Domači žganci</h3>
+                                <span class="menu-item-price">11,50 €</span>
+                            </div>
+                            <p>Domači ajdovi žganci s pečenko in ocvirki</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://www.sketa.si/wp-content/uploads/2020/06/Kokosovi-struklji-z-linolado-768x512.jpg" alt="Štruklji">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Štruklji</h3>
+                                <span class="menu-item-price">13,90 €</span>
+                            </div>
+                            <p>Domači štruklji z različnimi nadevi (sirov, orehov, tarragon)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category" id="sladice">
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://www.slovenia.info/imagine_cache/og/uploads/vodilne_destinacije/prekmurska_gibanica_tomo_jesenicnik_7.jpg" alt="Gibanica">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Prekmurska gibanica</h3>
+                                <span class="menu-item-price">6,90 €</span>
+                            </div>
+                            <p>Originalna prekmurska gibanica z jabolki, orehi, makom in sirom</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://www.mlekarna-krepko.si/wp-content/uploads/2020/12/sarkelj-recept-naslovna.jpg" alt="Šarkelj">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Šarkelj</h3>
+                                <span class="menu-item-price">5,50 €</span>
+                            </div>
+                            <p>Tradicionalni slovenski šarkelj s cinamonom in vanilijevim sladoledom</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://gajbica.si/media/uploads/public/generic_list_item/217-recept_-_domaca_orehova_potica.png" alt="Potica">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Domača potica</h3>
+                                <span class="menu-item-price">5,90 €</span>
+                            </div>
+                            <p>Domača potica z različnimi nadevi (orehi, mak, tarragon)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category" id="pijaca">
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://cdn.fccellars.com/wp-content/uploads/2024/01/Red-Wine-in-Calgary.jpg" alt="Vino">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Domača vina</h3>
+                                <span class="menu-item-price">3,50 €/gl</span>
+                            </div>
+                            <p>Izbira domačih belih, rdečih in rose vin iz slovenskih vinogradov</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://newtrailbrewing.com/wp-content/uploads/2024/05/hands-of-three-men-doing-a-beer-toast.png" alt="Pivo">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Domača piva</h3>
+                                <span class="menu-item-price">3,90 €/0,5l</span>
+                            </div>
+                            <p>Izbira domačih piv iz slovenskih pivovarn</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img">
+                            <img src="https://latonique.com/wp-content/uploads/2021/07/Blog-1.png" alt="Sadje">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-title">
+                                <h3>Sadni sokovi</h3>
+                                <span class="menu-item-price">2,90 €/0,3l</span>
+                            </div>
+                            <p>Sveži sadni sokovi iz domačega sadja (jabolko, hruška, češnja)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerija sekcija -->
+    <section id="gallery">
+        <div class="container">
+            <h2>Naša Galerija</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Restavracija">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Naš Lokal</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Notranjost">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Notranjost</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Hrana">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Specialitete</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Hrana">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Jedilnik</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sladice">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Sladice</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://content.selectbox.si/uploads/2024/02/Fabrika_gourmet_web_2-2.jpg" alt="Hrana">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Predjed</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt sekcija -->
+    <section id="contact">
+        <div class="container">
+            <h2>Kontakt & Rezervacije</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Kje Nas Najdete</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">🏢</div>
+                            <div>Ulica talcev 12, 1000 Ljubljana, Slovenija</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>+386 1 234 56 78</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>info@gostilnaprimartinu.si</div>
+                        </div>
+                    </div>
+                    <h3>Odpiralni Čas</h3>
+                    <ul class="opening-hours">
+                        <li><span>Ponedeljek - Četrtek</span> <span>11:00 - 22:00</span></li>
+                        <li><span>Petek - Sobota</span> <span>11:00 - 24:00</span></li>
+                        <li><span>Nedelja</span> <span>11:00 - 20:00</span></li>
+                    </ul>
+                    <h3>Sledite Nam</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">FB</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">TW</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="reservation-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Vaše ime" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Vaš e-poštni naslov" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Vaša telefonska številka" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" placeholder="Datum" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="time" placeholder="Čas" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="" disabled selected>Število oseb</option>
+                                <option value="1">1 oseba</option>
+                                <option value="2">2 osebi</option>
+                                <option value="3">3 osebe</option>
+                                <option value="4">4 osebe</option>
+                                <option value="5+">5+ oseb</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Posebne želje (opcijsko)"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Rezervirajte Mizo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="footer-logo">Gostilna<span> Pri Martinu</span></a>
+                <ul class="footer-links">
+                    <li><a href="#hero">Domov</a></li>
+                    <li><a href="#about">O Nas</a></li>
+                    <li><a href="#menu">Meni</a></li>
+                    <li><a href="#gallery">Galerija</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="#" class="social-link">FB</a>
+                    <a href="#" class="social-link">IG</a>
+                    <a href="#" class="social-link">TW</a>
+                </div>
+                <p class="copyright">© 2020 Gostilna Pri Martinu. Vse pravice pridržane.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img src="" alt="" id="lightbox-img">
+            <div class="lightbox-nav">
+                <div class="lightbox-nav-btn" id="prev-btn">&#10094;</div>
+                <div class="lightbox-nav-btn" id="next-btn">&#10095;</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobilna navigacija
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links li');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+        
+        // Scroll efekti za header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling za anchor povezave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Meni tab funkcionalnost
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuCategories = document.querySelectorAll('.menu-category');
+        
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and categories
+                menuTabs.forEach(t => t.classList.remove('active'));
+                menuCategories.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding category
+                const categoryId = tab.getAttribute('data-category');
+                document.getElementById(categoryId).classList.add('active');
+            });
+        });
+        
+        // Lightbox funkcionalnost
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        let currentImageIndex = 0;
+        const images = Array.from(galleryItems).map(item => {
+            return {
+                src: item.querySelector('img').src,
+                alt: item.querySelector('h3')?.textContent || 'Gostilna Pri Martinu'
+            };
+        });
+        
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentImageIndex = index;
+                updateLightboxImage();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateLightboxImage();
+        });
+        
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateLightboxImage();
+        });
+        
+        function updateLightboxImage() {
+            lightboxImg.src = images[currentImageIndex].src;
+            lightboxImg.alt = images[currentImageIndex].alt;
+        }
+        
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            } else if (e.key === 'ArrowLeft') {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                updateLightboxImage();
+            } else if (e.key === 'ArrowRight') {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                updateLightboxImage();
+            }
+        });
+        
+        // Form submission
+        const reservationForm = document.getElementById('reservation-form');
+        
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Tukaj bi dodali kodo za pošiljanje formularja
+            alert('Hvala za vašo rezervacijo! V kratkem vas bomo kontaktirali za potrditev.');
+            reservationForm.reset();
+        });
+        
+        // Inicializacija
+        window.addEventListener('DOMContentLoaded', () => {
+            // Dodatna inicializacija, če je potrebna
+        });
+    </script>
+</body>
+</html>
